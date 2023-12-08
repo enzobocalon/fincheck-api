@@ -4,8 +4,8 @@ import { UpdateTransactionDto } from '../dto/update-transaction.dto';
 import { TransactionsRepository } from 'src/shared/database/repositories/transactions.repositories';
 import { ValidateBankAccountOwnershipService } from '../../bank-accounts/services/validate-bankaccount-ownership.service';
 import { ValidateCategoryOwnershipService } from '../../categories/services/validate-category-ownership.service';
-import { ValidateTransactionOwnership } from './validate-transaction.ownership.service';
 import { TransactionType } from '../entities/Transaction';
+import { ValidateTransactionOwnershipService } from './validate-transaction.ownership.service';
 
 interface Filters {
   month: number;
@@ -20,7 +20,7 @@ export class TransactionsService {
     private readonly transactionsRepo: TransactionsRepository,
     private readonly validateBankAccountOwnershipService: ValidateBankAccountOwnershipService,
     private readonly validateCategoryOwnershipService: ValidateCategoryOwnershipService,
-    private readonly ValidateTransactionOwnershipService: ValidateTransactionOwnership,
+    private readonly ValidateTransactionOwnershipService: ValidateTransactionOwnershipService,
   ) {}
   async create(userId: string, createTransactionDto: CreateTransactionDto) {
     const { bankAccountId, categoryId, date, name, type, value } =

@@ -11,7 +11,12 @@ export class ValidateBankAccountOwnershipService {
         userId,
         id: bankAccountId,
       },
+      select: {
+        user: true,
+      },
     });
+
+    console.log(isOwner);
 
     if (!isOwner) {
       throw new NotFoundException('Bank Account not found.');
